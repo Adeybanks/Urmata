@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>For Urmata 🤍</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Jost:wght@300;400;500&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.24.7/babel.min.js"></script>
+<style>
+:root{--bg1:#fbeee9;--bg2:#f3d3d3;--ink:#2a2527;--muted:#7a6a6c;--glass:rgba(255,255,255,.55);--glassb:rgba(255,255,255,.8);--accent:#d98a9b;--glow:rgba(217,138,155,.45);--btn:#1c1819;--btnt:#fbeee9;
+ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg1:#1e1a1c;--bg2:#2d2225;--ink:#f6e9e5;--muted:#b9a5a8;--glass:rgba(255,255,255,.07);--glassb:rgba(255,255,255,.16);--glow:rgba(232,160,175,.4);--btn:#f6e9e5;--btnt:#1c1819;color-scheme:dark}}
+:root[data-theme="dark"]{--bg1:#1e1a1c;--bg2:#2d2225;--ink:#f6e9e5;--muted:#b9a5a8;--glass:rgba(255,255,255,.07);--glassb:rgba(255,255,255,.16);--glow:rgba(232,160,175,.4);--btn:#f6e9e5;--btnt:#1c1819;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;min-height:100vh;background:radial-gradient(120% 90% at 20% 0%,var(--bg1),var(--bg2));color:var(--ink);font-family:'Jost',system-ui,sans-serif;font-weight:300;overflow-x:hidden}
+canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:50}
+.serif{font-family:'Cormorant Garamond',Georgia,serif}.hand{font-family:'Caveat',cursive;color:var(--accent)}
+.screen{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 20px;text-align:center;animation:in .9s cubic-bezier(.2,.7,.2,1) both;position:relative;z-index:2}
+@keyframes in{from{opacity:0;transform:translateY(18px) scale(.985);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(44px,13vw,84px);margin:0;letter-spacing:.01em;line-height:1}
+h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:clamp(26px,7vw,40px);margin:0 0 6px}
+.glass{background:var(--glass);border:1px solid var(--glassb);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-radius:24px;box-shadow:0 10px 40px -12px var(--glow),inset 0 1px 0 var(--glassb)}
+.btn{font:400 15px 'Jost',sans-serif;letter-spacing:.16em;text-transform:uppercase;background:var(--btn);color:var(--btnt);border:0;border-radius:999px;padding:16px 34px;cursor:pointer;box-shadow:0 8px 30px -6px var(--glow);transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
+.btn:hover{transform:translateY(-2px) scale(1.03)}.btn:active{transform:scale(.96)}
+.btn.alt{background:transparent;color:var(--ink);border:1px solid var(--ink);box-shadow:none}
+.stats{display:flex;flex-direction:column;gap:14px;width:100%;max-width:360px;margin:34px 0}
+.stat{padding:18px 20px;animation:float 5s ease-in-out infinite}.stat:nth-child(2){animation-delay:-1.6s}.stat:nth-child(3){animation-delay:-3.2s}
+@keyframes float{50%{transform:translateY(-6px)}}
+.stat b{display:block;font:600 34px 'Cormorant Garamond',serif}.stat span{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.overlay{position:fixed;inset:0;z-index:40;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(20,14,16,.35);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:opacity .9s,visibility .9s}
+.overlay.out{opacity:0;visibility:hidden;pointer-events:none}
+.modal{max-width:380px;padding:36px 28px}.modal p{font:italic 400 22px/1.35 'Cormorant Garamond',serif;margin:14px 0 28px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%;max-width:520px;margin:20px 0 28px}
+.card{height:210px;perspective:900px;cursor:pointer}
+.in{position:relative;width:100%;height:100%;transition:transform .8s cubic-bezier(.2,.7,.2,1);transform-style:preserve-3d}
+.card.f .in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;padding:14px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:6px;overflow:hidden}
+.face.back{transform:rotateY(180deg);font-size:12.5px;line-height:1.45;background:var(--glassb)}
+.face .n{font:600 40px 'Cormorant Garamond',serif;color:var(--accent)}.face .t{font:600 18px 'Cormorant Garamond',serif}
+.rings{position:relative;width:min(86vw,340px);height:200px;margin:10px 0 24px}
+.rg{position:absolute;top:30px;width:140px;height:140px}
+.rg.l{left:-300px;animation:sl 2.2s cubic-bezier(.2,.8,.2,1) .3s forwards}.rg.r{right:-300px;animation:sr 2.2s cubic-bezier(.2,.8,.2,1) .3s forwards}
+@keyframes sl{to{left:calc(50% - 98px)}}@keyframes sr{to{right:calc(50% - 98px)}}
+.rings.done .rg{animation:none;opacity:0;transition:opacity 1.2s}.rings.done .rg.l{left:calc(50% - 98px)}.rings.done .rg.r{right:calc(50% - 98px)}
+.yy{position:absolute;left:50%;top:50%;width:170px;height:170px;margin:-85px 0 0 -85px;opacity:0;transform:scale(.4) rotate(-180deg);filter:drop-shadow(0 0 24px var(--glow))}
+.rings.done .yy{opacity:1;transform:none;transition:all 1.6s cubic-bezier(.2,.8,.2,1);animation:spin 18s linear 1.6s infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.big{font:italic 400 clamp(26px,7.5vw,38px)/1.25 'Cormorant Garamond',serif;max-width:460px;animation:in 1s both}
+.dots span{display:inline-block;width:10px;height:10px;margin:0 6px;border-radius:50%;background:var(--accent);animation:dot 1.2s infinite}.dots span:nth-child(2){animation-delay:.2s}.dots span:nth-child(3){animation-delay:.4s}
+@keyframes dot{50%{transform:translateY(-10px);opacity:.4}}
+.tip{position:fixed;bottom:calc(28px + env(safe-area-inset-bottom,0px));left:0;right:0;text-align:center;font:500 20px 'Caveat',cursive;color:var(--muted);animation:fade 2s infinite;z-index:3}
+@keyframes fade{50%{opacity:.3}}
+.heart{animation:beat 1.4s ease-in-out infinite;transform-origin:center;transform-box:fill-box}@keyframes beat{50%{transform:scale(1.18)}}
+.kit{animation:float 4s ease-in-out infinite;filter:drop-shadow(0 12px 26px var(--glow))}
+.row{display:flex;flex-direction:column;gap:12px;margin-top:26px;width:100%;max-width:320px}
+.lk{position:relative;width:100%;max-width:340px;height:140px;margin:26px 0}.lk .fg{position:absolute;top:0;transition:all 1.6s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 10px 18px var(--glow))}.lk .l{left:0}.lk .r{right:0}.lk.m .l{left:calc(50% - 84px)}.lk.m .r{right:calc(50% - 84px)}.lk .hx{position:absolute;left:50%;top:40px;margin-left:-16px;font-size:32px;opacity:0;transition:opacity 1s 1.2s}.lk.m .hx{opacity:1}
+.code{width:100%;max-width:300px;text-align:center;font:600 30px 'Cormorant Garamond',serif;letter-spacing:.35em;padding:14px 10px 14px 20px;color:var(--ink);outline:none}.code::placeholder{letter-spacing:.2em;opacity:.35}.sh{animation:sh .5s}@keyframes sh{20%,60%{transform:translateX(-10px)}40%,80%{transform:translateX(10px)}}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const {useState,useEffect,useRef}=React;
+const COL=['#f4a7b9','#ffd9e0','#fff3e6','#e8788f','#ffffff','#2a2527'];
+const FX={parts:[],burst(){}};
+function Particles(){
+  const ref=useRef();
+  useEffect(()=>{
+    const c=ref.current,x=c.getContext('2d');let W,H,id;
+    const fit=()=>{W=c.width=innerWidth;H=c.height=innerHeight};fit();addEventListener('resize',fit);
+    const petals=Array.from({length:22},()=>({x:Math.random()*W,y:Math.random()*H,r:5+Math.random()*7,vy:.3+Math.random()*.6,vx:Math.random()-.5,a:Math.random()*6,va:(Math.random()-.5)*.03,p:Math.random()*6}));
+    FX.burst=(px,py,n=10,big)=>{for(let i=0;i<n;i++){const a=Math.random()*6.283,s=(big?3:1.5)+Math.random()*(big?7:3);FX.parts.push({x:px,y:py,vx:Math.cos(a)*s,vy:Math.sin(a)*s-(big?2:0),l:1,c:COL[Math.random()*COL.length|0],s:2+Math.random()*(big?5:3),sq:big&&Math.random()>.5})}};
+    const tap=e=>FX.burst(e.clientX,e.clientY,7);addEventListener('pointerdown',tap);
+    const loop=()=>{x.clearRect(0,0,W,H);
+      petals.forEach(p=>{p.y+=p.vy;p.p+=.02;p.x+=p.vx+Math.sin(p.p)*.6;p.a+=p.va;if(p.y>H+20){p.y=-20;p.x=Math.random()*W}
+        x.save();x.translate(p.x,p.y);x.rotate(p.a);x.globalAlpha=.55;x.fillStyle='#f0a1b4';x.beginPath();x.ellipse(0,0,p.r,p.r*.55,0,0,6.283);x.fill();x.restore()});
+      FX.parts=FX.parts.filter(q=>q.l>0);
+      FX.parts.forEach(q=>{q.x+=q.vx;q.y+=q.vy;q.vy+=.08;q.vx*=.99;q.l-=.014;x.globalAlpha=Math.max(q.l,0);x.fillStyle=q.c;
+        q.sq?x.fillRect(q.x,q.y,q.s*1.6,q.s):(x.beginPath(),x.arc(q.x,q.y,q.s,0,6.283),x.fill())});
+      x.globalAlpha=1;id=requestAnimationFrame(loop)};loop();
+    return()=>{cancelAnimationFrame(id);removeEventListener('resize',fit);removeEventListener('pointerdown',tap)};
+  },[]);
+  return <canvas id="fx" ref={ref}/>;
+}
+function Count({to,suffix='',plus}){
+  const [v,setV]=useState(0);
+  useEffect(()=>{let s;const d=1800;const f=t=>{s=s||t;const k=Math.min((t-s)/d,1);setV(Math.round(to*(1-Math.pow(1-k,3))));k<1&&requestAnimationFrame(f)};requestAnimationFrame(f)},[to]);
+  return <b>{v.toLocaleString()}{suffix}</b>;
+}
+function YinYang({size=170,className='yy'}){
+  return <svg className={className} viewBox="-52 -52 104 104" width={size} height={size}>
+    <circle r="50" fill="#fff7f2" stroke="#2a2527" strokeWidth="1"/>
+    <path d="M0 -50A50 50 0 0 1 0 50A25 25 0 0 1 0 0A25 25 0 0 0 0 -50" fill="#141011"/>
+    <circle cy="-25" r="7" fill="#141011"/><circle cy="25" r="7" fill="#fff7f2"/></svg>;
+}
+function Hero8(){return <svg className="fg" viewBox="0 0 100 130" width="84" height="109"><rect x="28" y="68" width="44" height="40" rx="14" fill="#243a7a"/><path d="M50 68V108M34 80L50 90L66 80" stroke="#d63a46" strokeWidth="4" fill="none"/><rect x="26" y="104" width="18" height="20" rx="8" fill="#d63a46"/><rect x="56" y="104" width="18" height="20" rx="8" fill="#d63a46"/><circle cx="50" cy="38" r="30" fill="#d63a46"/><path d="M50 8V68M22 38H78M30 18Q50 38 70 18M30 58Q50 38 70 58" stroke="#8e1f2a" strokeWidth="1.4" fill="none"/><ellipse cx="38" cy="40" rx="10" ry="6" fill="#fff" stroke="#141011" strokeWidth="2" transform="rotate(14 38 40)"/><ellipse cx="62" cy="40" rx="10" ry="6" fill="#fff" stroke="#141011" strokeWidth="2" transform="rotate(-14 62 40)"/></svg>}
+function Kit8(){return <svg className="fg" viewBox="0 0 100 130" width="84" height="109"><path d="M18 72L50 120L82 72Z" fill="#f4a7b9"/><path d="M20 40L16 10L42 26Z M80 40L84 10L58 26Z" fill="#fff7f2" stroke="#2a2527" strokeWidth="2.5"/><ellipse cx="50" cy="46" rx="38" ry="30" fill="#fff7f2" stroke="#2a2527" strokeWidth="2.5"/><circle cx="36" cy="46" r="3.5" fill="#141011"/><circle cx="64" cy="46" r="3.5" fill="#141011"/><ellipse cx="50" cy="54" rx="4" ry="2.5" fill="#e8788f"/><path d="M14 44L2 40M14 52L2 56M86 44L98 40M86 52L98 56" stroke="#2a2527" strokeWidth="1.8" strokeLinecap="round"/><path d="M66 22L90 12L88 34Z M66 22L94 30L84 8Z" fill="#ff6f91" stroke="#c93d63" strokeWidth="1.5"/><circle cx="66" cy="22" r="5" fill="#ff8fa8"/></svg>}
+function Lock({ok}){
+  const [v,setV]=useState(''),[bad,setBad]=useState(false),[m,setM]=useState(false);
+  const on=e=>{if(m)return;const d=e.target.value.replace(/\D/g,'').slice(0,8);setV(d);
+    if(d.length===8){if(d==='20260911'){setM(true);setTimeout(()=>FX.burst(innerWidth/2,innerHeight*.38,120,true),1500);setTimeout(ok,3200)}else{setBad(true);setTimeout(()=>{setBad(false);setV('')},700)}}};
+  return <div className="screen">
+    <div className="hand" style={{fontSize:26}}>for your eyes only</div>
+    <h2>Enter your access code</h2>
+    <div className={'lk'+(m?' m':'')}><div className="l"><Hero8/></div><div className="r"><Kit8/></div><div className="hx heart">💖</div></div>
+    <input className={'glass code'+(bad?' sh':'')} value={v} onChange={on} inputMode="numeric" pattern="[0-9]*" maxLength="8" placeholder="• • • • • • • •" aria-label="Access code"/>
+    <div className="hand" style={{fontSize:22,marginTop:14,color:'var(--muted)'}}>{bad?'not quite… try again':'hint: a very special date'}</div></div>;
+}
+function Warn({onGo,out}){
+  return <div className={'overlay'+(out?' out':'')}><div className="glass modal screen" style={{minHeight:0,padding:'36px 28px',animation:'none'}}>
+    <YinYang size={54} className=""/>
+    <p>Warning: Accessing this site may result in sudden blushing and smiling on your screen</p>
+    <button className="btn" onClick={onGo}>Tap to Enter</button></div></div>;
+}
+function Hero({next}){
+  return <div className="screen">
+    <div className="hand" style={{fontSize:26}}>a little something, made only for you</div>
+    <h1>For Urmata 🤍</h1>
+    <div className="hand" style={{fontSize:28,marginTop:8,color:'var(--muted)'}}>the girl who makes every day feel like a date</div>
+    <div className="stats">
+      <div className="glass stat"><Count to={4281}/><span>Times we debated what to eat</span></div>
+      <div className="glass stat"><Count to={999999} suffix="+"/><span>Outrageous “I miss you” count</span></div>
+      <div className="glass stat"><Count to={100} suffix="%"/><span>Green flags</span></div>
+    </div>
+    <button className="btn" onClick={next}>Our memories</button></div>;
+}
+const MEM=[
+ {n:'01',t:'Brantford',b:'First date: food at The Works, a walk to the Brantford library near Laurier campus, and boba at Tea Tree to finish.'},
+ {n:'02',t:'Arcade & August 8',b:'You came to Hamilton, we hit the arcade, then August 8. You may say you won, but officially? It’s a tie 😗'},
+ {n:'03',t:'Pur & Simple',b:'Breakfast at Pur & Simple, followed by an innocent movie at Cineplex.'},
+ {n:'∞',t:'Repeat location: McMaster Innovation Park',b:'Our constant date-ending spot, where a few special things happen 😉'}];
+function Memories({next}){
+  const [f,setF]=useState({});
+  return <div className="screen">
+    <h2>Our little chapters</h2><div className="hand" style={{fontSize:24}}>tap to remember</div>
+    <div className="grid">{MEM.map((m,i)=>
+      <div key={i} className={'card'+(f[i]?' f':'')} onClick={()=>setF({...f,[i]:!f[i]})}><div className="in">
+        <div className="face glass"><div className="n">{m.n}</div><div className="t">{m.t}</div></div>
+        <div className="face back glass">{m.b}</div></div></div>)}</div>
+    <button className="btn" onClick={next}>Continue</button></div>;
+}
+function Ring({color,cls}){
+  return <svg className={'rg '+cls} viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke={color} strokeWidth="9"/><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,.35)" strokeWidth="1.5" strokeDasharray="2 5"/></svg>;
+}
+function Bracelets({next}){
+  const [done,setDone]=useState(false),[btn,setBtn]=useState(false);
+  useEffect(()=>{const a=setTimeout(()=>setDone(true),2800),b=setTimeout(()=>setBtn(true),4800);return()=>{clearTimeout(a);clearTimeout(b)}},[]);
+  return <div className="screen" onClick={()=>setBtn(true)}>
+    <div className={'rings'+(done?' done':'')}><Ring color="#141011" cls="l"/><Ring color="#d8d4d6" cls="r"/><YinYang/></div>
+    <div className="big" style={{opacity:done?1:0,transition:'opacity 1.4s'}}>So different yet so perfect for each other.</div>
+    <div style={{height:90,marginTop:20}}>{btn&&<button className="btn" style={{animation:'in .8s both'}} onClick={e=>{e.stopPropagation();next()}}>Continue</button>}</div></div>;
+}
+const STEPS=[
+ {t:'I guess your detective skills aren’t so bad after all...'},{p:1800},
+ {t:'Are you sure you want to proceed?'},
+ {t:'I’ll have to try to remember what it was...'},
+ {t:'Oh, I remember...'},{b:1}];
+function Suspense({next}){
+  const [i,setI]=useState(0),[h,setH]=useState(false),s=STEPS[i];
+  const adv=()=>{if(i<STEPS.length-1&&!s.b){FX.burst(innerWidth/2,innerHeight/2,4);setI(i+1)}};
+  useEffect(()=>{if(s.p){const t=setTimeout(()=>setI(x=>x+1),s.p);return()=>clearTimeout(t)}},[i]);
+  return <div className="screen" onClick={adv}>
+    {s.t&&<div key={i} className="big">{s.t}</div>}
+    {s.p&&<div key={i} className="dots"><span/><span/><span/></div>}
+    {s.b&&!h&&<button key={i} className="btn" style={{animation:'in 1s both'}} onClick={()=>{setH(true);setTimeout(next,2400)}}>Okay, tell me</button>}
+    {h&&<div className="big hand" style={{fontSize:36,animation:'in 1.2s both'}}>Hint: There is only one right answer.</div>}
+    {s.t&&<div className="tip">tap to continue</div>}</div>;
+}
+function Kitty(){
+  return <svg className="kit" viewBox="0 0 200 220" width="220" height="242">
+    <path d="M48 70L40 22L82 48Z M152 70L160 22L118 48Z" fill="#2a2527"/><path d="M52 62L48 36L72 52Z M148 62L152 36L128 52Z" fill="#f4a7b9"/>
+    <ellipse cx="100" cy="150" rx="58" ry="55" fill="#2a2527"/>
+    <ellipse cx="100" cy="92" rx="62" ry="54" fill="#fff7f2" stroke="#2a2527" strokeWidth="3"/>
+    <path d="M72 62Q100 40 128 62Q100 52 72 62Z" fill="#2a2527" opacity=".85"/>
+    <ellipse cx="78" cy="92" rx="8" ry="10" fill="#141011"/><ellipse cx="122" cy="92" rx="8" ry="10" fill="#141011"/>
+    <circle cx="81" cy="88" r="3" fill="#fff"/><circle cx="125" cy="88" r="3" fill="#fff"/>
+    <ellipse cx="62" cy="108" rx="9" ry="5" fill="#f4a7b9" opacity=".7"/><ellipse cx="138" cy="108" rx="9" ry="5" fill="#f4a7b9" opacity=".7"/>
+    <path d="M95 106L105 106L100 113Z" fill="#e8788f"/><path d="M100 113Q92 122 86 116M100 113Q108 122 114 116" stroke="#2a2527" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+    <path d="M44 100L18 94M44 108L18 112M156 100L182 94M156 108L182 112" stroke="#2a2527" strokeWidth="2" strokeLinecap="round"/>
+    <g className="heart"><path d="M100 196C70 174 70 146 88 146C96 146 100 152 100 152C100 152 104 146 112 146C130 146 130 174 100 196Z" fill="#ff6f91" style={{filter:'drop-shadow(0 0 14px #ff6f91)'}}/></g>
+    <ellipse cx="68" cy="168" rx="14" ry="11" fill="#fff7f2" stroke="#2a2527" strokeWidth="2.5"/><ellipse cx="132" cy="168" rx="14" ry="11" fill="#fff7f2" stroke="#2a2527" strokeWidth="2.5"/></svg>;
+}
+function Proposal({yes}){
+  return <div className="screen">
+    <Kitty/>
+        <h1 style={{fontSize:'clamp(36px,10vw,60px)'}}>Will you be my girlfriend?</h1>
+    <div className="row"><button className="btn" onClick={yes}>Yes, I’d love to 💖</button><button className="btn alt" onClick={yes}>YESSS!! 💍✨</button></div></div>;
+}
+function Win(){
+  useEffect(()=>{
+    const go=()=>FX.burst(innerWidth*(.15+Math.random()*.7),innerHeight*(.1+Math.random()*.45),70,true);
+    go();FX.burst(innerWidth/2,innerHeight,200,true);const t=setInterval(go,650);return()=>clearInterval(t)},[]);
+  return <div className="screen">
+    <div style={{fontSize:64}} className="heart">🤍</div>
+    <div className="big" style={{marginTop:16}}>I finally get to call you mine.</div>
+    <div className="hand" style={{fontSize:34,marginTop:18}}>Now face the camera to me to claim your prize!</div></div>;
+}
+function App(){
+  const [st,setSt]=useState('lock'),[out,setOut]=useState(false);
+  const go=n=>()=>setSt(n);
+  return <>
+    <Particles/>
+    {st==='lock'&&<Lock ok={go('warn')}/>}
+    {st==='warn'&&<><Hero next={()=>{}}/><Warn out={out} onGo={()=>{setOut(true);setTimeout(()=>setSt('hero'),900)}}/></>}
+    {st==='hero'&&<Hero next={go('mem')}/>}
+    {st==='mem'&&<Memories next={go('brace')}/>}
+    {st==='brace'&&<Bracelets next={go('sus')}/>}
+    {st==='sus'&&<Suspense next={go('ask')}/>}
+    {st==='ask'&&<Proposal yes={go('win')}/>}
+    {st==='win'&&<Win/>}
+  </>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>
